@@ -1,0 +1,11 @@
+﻿@model SmartGearOnline.Models.Product
+
+<div class="card mb-3 shadow-sm">
+    <div class="card-body">
+        <h5 class="card-title">@Model.Name</h5>
+        <p class="card-text">Price: $@Model.Price</p>
+        <a asp-action="Edit" asp-route-id="@Model.Id">Customize</a> |
+        <a asp-action="Details" asp-route-id="@Model.Id">More Info</a> |
+        <a asp-action="Delete" asp-route-id="@Model.Id">Delete</a>
+    </div>
+</div>
