@@ -40,6 +40,6 @@ app.MapControllers();
 // This handles conventional route fallback (e.g. /)
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Products}/{action=Index}/{id?}");
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();

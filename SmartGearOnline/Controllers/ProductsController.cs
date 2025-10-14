@@ -16,7 +16,6 @@ namespace SmartGearOnline.Controllers
         }
 
         [HttpGet("")]
-        [HttpGet("/")]
         public async Task<IActionResult> Index()
         {
             var products = await _context.Products.ToListAsync();
