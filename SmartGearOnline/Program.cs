@@ -17,6 +17,8 @@ builder.Services.AddDbContext<SmartGearOnlineContext>(options =>
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<AuthFilter>();
 builder.Services.AddScoped<LogActionFilter>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 
 var app = builder.Build();
 
@@ -34,10 +36,10 @@ app.UseStaticFiles();
 app.UseRouting();
 app.UseAuthorization();
 
-// This enables your [Route] and [HttpGet] attributes
+// Enables attribute routing
 app.MapControllers();
 
-// This handles conventional route fallback (e.g. /)
+// Handles conventional route fallback 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
