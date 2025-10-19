@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using SmartGearOnline.Models;
 using SmartGearOnline.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SmartGearOnline.Controllers
 {
@@ -10,18 +11,20 @@ namespace SmartGearOnline.Controllers
     {
         private readonly IProductRepository _productRepository;
         private readonly ICategoryRepository _categoryRepository;
+        private readonly ILogger<ProductsController> _logger;
 
-        public ProductsController(IProductRepository productRepository, ICategoryRepository categoryRepository)
+        public ProductsController(IProductRepository productRepository, ICategoryRepository categoryRepository, ILogger<ProductsController> logger)
         {
             _productRepository = productRepository;
             _categoryRepository = categoryRepository;
+            _logger = logger;
         }
 
         [HttpGet("")]
         public async Task<IActionResult> Index()
         {
-            var products = await _productRepository.GetAllAsync();
-            return View(products);
+                var products = await _productRepository.GetAllAsync();
+                return View(products);
         }
 
         [HttpGet("details/{id}")]
@@ -35,6 +38,7 @@ namespace SmartGearOnline.Controllers
             return View(product);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpGet("create")]
         public async Task<IActionResult> Create()
         {

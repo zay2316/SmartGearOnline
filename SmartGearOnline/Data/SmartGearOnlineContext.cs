@@ -1,11 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using SmartGearOnline.Models;
+using System;
+using System.Collections.Generic;
+
 
 namespace SmartGearOnline.Data;
 
-public partial class SmartGearOnlineContext : DbContext
+public partial class SmartGearOnlineContext : IdentityDbContext<IdentityUser>
 {
     public SmartGearOnlineContext()
     {
@@ -22,6 +25,7 @@ public partial class SmartGearOnlineContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        base.OnModelCreating(modelBuilder);
         OnModelCreatingPartial(modelBuilder);
     }
 

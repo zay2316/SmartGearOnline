@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SmartGearOnline.Data;
 
@@ -11,9 +12,11 @@ using SmartGearOnline.Data;
 namespace SmartGearOnline.Migrations
 {
     [DbContext(typeof(SmartGearOnlineContext))]
-    partial class SmartGearOnlineContextModelSnapshot : ModelSnapshot
+    [Migration("20251018184111_UpdateModel")]
+    partial class UpdateModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
