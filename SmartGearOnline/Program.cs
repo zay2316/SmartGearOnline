@@ -38,6 +38,9 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
 .AddEntityFrameworkStores<SmartGearOnlineContext>()
 .AddDefaultTokenProviders();
 
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
 builder.Services.ConfigureApplicationCookie(options =>
 {
     options.LoginPath = "/Identity/Account/Login";
@@ -47,6 +50,12 @@ builder.Services.ConfigureApplicationCookie(options =>
 // Cache Service using SignalR
 builder.Services.AddMemoryCache();
 builder.Services.AddSignalR();
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll",
+        policy => policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+});
 
 var app = builder.Build();
 
@@ -91,6 +100,14 @@ app.MapControllerRoute(
 app.MapRazorPages();
 
 app.MapHub<ProductHub>("/hubs/products");
+
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+
+app.UseCors("AllowAll");
 
 app.Run();
 
