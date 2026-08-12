@@ -81,4 +81,4 @@ Before running the project, ensure you have:
 1. Clone the repository:
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/zay2316/SmartGearOnline.git
